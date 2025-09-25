@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>履歷表</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #eaeaea;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .resume-container {
+            background-color: #ffffff;
+            width: 80%;
+            max-width: 900px;
+            margin: 2rem;
+            border: 3px solid #000000;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.5s, color 0.5s, border 0.5s;
+        }
+
+        header {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .section {
+            padding: 1.5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+        }
+
+        /* 白色主題 */
+        body.light .resume-container {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #000000;
+        }
+
+        /* 黑色主題 */
+        body.dark {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        body.dark .resume-container {
+            background-color: #111111;
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        body.dark header {
+            background-color: transparent;
+            color: #ffffff;
+        }
+
+        body.dark .theme-toggle {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body class="light">
+    <button class="theme-toggle">切換主題</button>
+    <div class="resume-container">
+        <header>
+            <h1>王小明</h1>
+            <p>前端工程師 | UI/UX 設計</p>
+        </header>
+
+        <section class="section">
+            <h2>關於我</h2>
+            <p>熱愛設計與開發，擅長打造兼具美感與效能的網站體驗。</p>
+        </section>
+
+        <section class="section">
+            <h2>技能</h2>
+            <ul>
+                <li>HTML / CSS / JavaScript</li>
+                <li>React / Vue</li>
+                <li>Figma / Adobe XD</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>工作經歷</h2>
+            <p>某某公司 - 前端工程師 (2020 - 至今)</p>
+        </section>
+
+        <section class="section">
+            <h2>學歷</h2>
+            <p>台灣大學 資訊工程學系 (2015 - 2019)</p>
+        </section>
+    </div>
+
+    <script>
+        // 主題切換
+        const toggleBtn = document.querySelector('.theme-toggle');
+        const themes = ["light", "dark"];
+        let currentThemeIndex = 0;
+
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.remove(themes[currentThemeIndex]);
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            document.body.classList.add(themes[currentThemeIndex]);
+        });
+
+        // 滾動淡入效果
+        const sections = document.querySelectorAll('.section');
+        const onScroll = () => {
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    sec.classList.add('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+    </script>
+</body>
+
+</html>
