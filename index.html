@@ -2,153 +2,318 @@
 <html lang="zh-Hant">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>履歷表</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>履歷表 — 姓名</title>
     <style>
+        /* 純黑白極簡風履歷（可直接複製使用） */
+        :root {
+            --bg: #ffffff;
+            --card: #ffffff;
+            --border: #000000;
+            --text: #000000;
+            --muted: #666666;
+            --maxw: 900px;
+            --radius: 14px;
+            --gap: 20px;
+            font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
         body {
-            font-family: 'Microsoft JhengHei', sans-serif;
+            height: 100%
+        }
+
+        body {
             margin: 0;
-            padding: 0;
+            background: var(--bg);
+            color: var(--text);
             display: flex;
+            align-items: flex-start;
             justify-content: center;
-            background-color: #eaeaea;
-            transition: background-color 0.5s, color 0.5s;
+            padding: 28px
         }
 
-        .resume-container {
-            background-color: #ffffff;
-            width: 80%;
-            max-width: 900px;
-            margin: 2rem;
-            border: 3px solid #000000;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-            transition: background-color 0.5s, color 0.5s, border 0.5s;
+        /* 卡片容器 */
+        .resume {
+            width: 100%;
+            max-width: var(--maxw);
+            background: var(--card);
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: var(--gap);
         }
 
-        header {
-            text-align: center;
-            padding: 1rem 0;
+        /* 左側 */
+        .sidebar {
+            padding: 28px;
+            border-right: 1px solid #e6e6e6
         }
 
-        .section {
-            padding: 1.5rem 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .section:last-child {
-            border-bottom: none;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 15px;
-            cursor: pointer;
+        .photo {
+            width: 100px;
+            height: 100px;
             border-radius: 8px;
-            border: none;
+            background: #f3f3f3;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--muted)
         }
 
-        /* 白色主題 */
-        body.light .resume-container {
-            background-color: #ffffff;
-            color: #000000;
-            border-color: #000000;
+        h1 {
+            font-size: 20px;
+            margin: 6px 0 4px;
+            text-align: center;
+            letter-spacing: 0.02em
         }
 
-        /* 黑色主題 */
-        body.dark {
-            background-color: #000000;
-            color: #ffffff;
+        .title {
+            font-size: 13px;
+            color: var(--muted);
+            text-align: center;
+            margin-bottom: 12px
         }
 
-        body.dark .resume-container {
-            background-color: #111111;
-            color: #ffffff;
-            border-color: #ffffff;
+        .contact {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text)
         }
 
-        body.dark header {
-            background-color: transparent;
-            color: #ffffff;
+        .contact .item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0
         }
 
-        body.dark .theme-toggle {
-            background-color: #333333;
-            color: #ffffff;
+        .contact .label {
+            width: 68px;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .section-title {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            margin: 18px 0 8px;
+            text-transform: uppercase
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid #e6e6e6;
+            font-size: 13px;
+            margin: 4px;
+            color: var(--text);
+            background: transparent
+        }
+
+        /* 右側 */
+        .main {
+            padding: 28px
+        }
+
+        .summary {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 14px
+        }
+
+        .job {
+            margin-bottom: 18px
+        }
+
+        .job .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start
+        }
+
+        .job h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+            font-weight: 700
+        }
+
+        .job .org {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        ul.bullets {
+            margin: 8px 0 0;
+            padding-left: 18px
+        }
+
+        ul.bullets li {
+            margin: 6px 0
+        }
+
+        /* 標題線條風格 */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px
+        }
+
+        .section-header h2 {
+            font-size: 14px;
+            margin: 0;
+            font-weight: 700
+        }
+
+        .section-header .rule {
+            height: 1px;
+            background: var(--border);
+            flex: 1;
+            opacity: 0.7
+        }
+
+        /* 響應式 */
+        @media (max-width:880px) {
+            .resume {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                order: 2;
+                border-right: 0;
+                border-top: 1px solid #e6e6e6
+            }
+
+            .main {
+                order: 1
+            }
+        }
+
+        /* 列印優化 */
+        @media print {
+            body {
+                background: white
+            }
+
+            .resume {
+                box-shadow: none;
+                border-width: 1px
+            }
         }
     </style>
 </head>
 
-<body class="light">
-    <button class="theme-toggle">切換主題</button>
-    <div class="resume-container">
-        <header>
-            <h1>王小明</h1>
-            <p>前端工程師 | UI/UX 設計</p>
-        </header>
+<body>
+    <article class="resume" role="document">
+        <aside class="sidebar">
+            <div class="photo">照片</div>
+            <h1>賴冠華</h1>
+            <div class="title">應徵職位 / 專長</div>
 
-        <section class="section">
-            <h2>關於我</h2>
-            <p>熱愛設計與開發，擅長打造兼具美感與效能的網站體驗。</p>
-        </section>
+            <div class="contact">
+                <div class="item">
+                    <div class="label">電話</div>
+                    <div>+886 972 169 196</div>
+                </div>
+                <div class="item">
+                    <div class="label">Email</div>
+                    <div>amy553377@gmail.com</div>
+                </div>
+                <div class="item">
+                    <div class="label">地點</div>
+                    <div>台北市</div>
+                </div>
+                <div class="item">
+                    <div class="label">連結</div>
+                    <div>GitHub / LinkedIn / 個人網站</div>
+                </div>
+            </div>
 
-        <section class="section">
-            <h2>技能</h2>
-            <ul>
-                <li>HTML / CSS / JavaScript</li>
-                <li>React / Vue</li>
-                <li>Figma / Adobe XD</li>
-            </ul>
-        </section>
+            <div class="section-title">技能</div>
+            <div>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">React</span>
+            </div>
 
-        <section class="section">
-            <h2>工作經歷</h2>
-            <p>某某公司 - 前端工程師 (2020 - 至今)</p>
-        </section>
+            <div class="section-title">語言</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.6">中文（母語） ・ 英文（中等）</div>
+        </aside>
 
-        <section class="section">
-            <h2>學歷</h2>
-            <p>台灣大學 資訊工程學系 (2015 - 2019)</p>
-        </section>
-    </div>
+        <main class="main">
+            <header class="section-header">
+                <h2>個人簡介</h2>
+                <div class="rule"></div>
+            </header>
+            <section class="summary">擁有 X 年前端開發經驗，熟悉跨瀏覽器相容、響應式設計與可維護的元件化開發流程。擅長把設計導入可用的產品中，並注重效能與可測試性。</section>
 
-    <script>
-        // 主題切換
-        const toggleBtn = document.querySelector('.theme-toggle');
-        const themes = ["light", "dark"];
-        let currentThemeIndex = 0;
+            <div class="section-header">
+                <h2>工作經歷</h2>
+                <div class="rule"></div>
+            </div>
 
-        toggleBtn.addEventListener('click', () => {
-            document.body.classList.remove(themes[currentThemeIndex]);
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            document.body.classList.add(themes[currentThemeIndex]);
-        });
+            <article class="job">
+                <div class="row">
+                    <div>
+                        <h3>資訊工程師 — 東森購物</h3>
+                        <div class="org">2018/07 — 現在 · 新北</div>
+                    </div>
+                    <div style="text-align:right;color:var(--muted);font-size:13px">全職</div>
+                </div>
+                <ul class="bullets">
+                    <li>主導公司官網與活動頁面，導入元件化設計系統，提升開發效率。</li>
+                    <li>負責前後端串接與性能優化，降低首屏載入時間。</li>
+                </ul>
+            </article>
 
-        // 滾動淡入效果
-        const sections = document.querySelectorAll('.section');
-        const onScroll = () => {
-            sections.forEach(sec => {
-                const rect = sec.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 50) {
-                    sec.classList.add('visible');
-                }
-            });
-        };
-        window.addEventListener('scroll', onScroll);
-        onScroll();
-    </script>
+            <article class="job">
+                <div class="row">
+                    <div>
+                        <h3>測試工程師 — 東森購物</h3>
+                        <div class="org">2017/07 — 2018/07 · 新北</div>
+                    </div>
+                    <div style="text-align:right;color:var(--muted);font-size:13px">實習</div>
+                </div>
+                <ul class="bullets">
+                    <li>切版與互動效果實作，與設計團隊協作完成多個專案。</li>
+                    <li>撰寫元件說明與開發範例，提升團隊一致性。</li>
+                </ul>
+            </article>
+
+            <div class="section-header">
+                <h2>專案</h2>
+                <div class="rule"></div>
+            </div>
+            <section>
+                <p style="margin:0;color:var(--muted)"><strong>個人作品：</strong> 範例作品（React、Netlify）</p>
+                <p style="margin:8px 0 0;color:var(--muted)"><strong>團隊專案：</strong> 活動平台 — 前端整合與部署</p>
+            </section>
+
+            <div class="section-header" style="margin-top:18px">
+                <h2>學歷</h2>
+                <div class="rule"></div>
+            </div>
+            <section style="margin-bottom:8px;color:var(--muted)">
+                中國科技大學 • 國際貿易系 • 學士 • 2014 — 2018
+            </section>
+
+            <footer style="margin-top:24px;color:var(--muted);font-size:13px"></footer>
+        </main>
+    </article>
 </body>
 
 </html>
