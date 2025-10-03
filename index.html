@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>履歷表 — 姓名</title>
+    <title>履歷表 — 賴冠華</title>
     <style>
-        /* 純黑白極簡風履歷（可直接複製使用） */
+        /* 純黑白極簡風履歷 */
         :root {
             --bg: #ffffff;
             --card: #ffffff;
@@ -21,11 +21,6 @@
 
         * {
             box-sizing: border-box
-        }
-
-        html,
-        body {
-            height: 100%
         }
 
         body {
@@ -59,16 +54,19 @@
         }
 
         .photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
-            background: #f3f3f3;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--muted)
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ccc;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         h1 {
@@ -78,11 +76,18 @@
             letter-spacing: 0.02em
         }
 
+        .eng-name {
+            font-size: 14px;
+            color: var(--muted);
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
         .title {
             font-size: 13px;
             color: var(--muted);
             text-align: center;
-            margin-bottom: 12px
+            margin-bottom: 16px
         }
 
         .contact {
@@ -219,9 +224,12 @@
 <body>
     <article class="resume" role="document">
         <aside class="sidebar">
-            <div class="photo">照片</div>
-            <h1>賴冠華 <span style="font-size:14px;color:var(--muted)">(Guanhua Lai)</span></h1>
-            <div class="title">應徵職位 / 專長</div>
+            <div class="photo">
+                <img src="S__138559498.jpg" alt="個人照片">
+            </div>
+            <h1>賴冠華</h1>
+            <div class="eng-name">Guanhua Lai</div>
+            <div class="title">---</div>
 
             <div class="contact">
                 <div class="item">
@@ -252,6 +260,13 @@
 
             <div class="section-title">語言</div>
             <div style="font-size:14px;color:var(--muted);line-height:1.6">中文（母語） ・ 英文（中等）</div>
+
+            <div class="section-title">證照</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.6">TQC+ Office 專業級證照</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.6">丙級國貿業務技術士</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.6">丙級會計事務技術士</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.6">航空貨運承攬技術認證</div>
+
         </aside>
 
         <main class="main">
@@ -260,8 +275,8 @@
                 <div class="rule"></div>
             </header>
             <section class="summary">
-                具備電商平台測試與系統維護經驗，熟悉 APP、Web、B2C 與後台系統測試。</br>
-                擅長撰寫測試案例、規劃測試流程，並能有效協調團隊合作，確保專案如期交付。</br>
+                具備電商平台測試與系統維護經驗，熟悉 APP、Web、B2C 與後台系統測試。<br>
+                擅長撰寫測試案例、規劃測試流程，並能有效協調團隊合作，確保專案如期交付。<br>
                 具備良好的溝通能力與問題解決能力，能快速適應新環境並持續學習成長。
             </section>
 
@@ -298,7 +313,7 @@
                     <li>撰寫並執行測試案例，涵蓋正常流程、異常情境及跨平台邏輯，確保功能正確與高品質上線。</li>
                     <li>負責 APP、Web、B2C 與後台系統測試（登入、購物車、付款、會員活動），支援多項行銷活動與會員任務。</li>
                     <li>與 PM 與開發團隊協作，回報並追蹤缺陷，協助專案如期交付。</li>
-                    </li>建立測試清單與常用屬性，提升測試覆蓋率並優化日常測試流程。</li>
+                    <li>建立測試清單與常用屬性，提升測試覆蓋率並優化日常測試流程。</li>
                 </ul>
             </article>
 
@@ -307,7 +322,7 @@
                 <div class="rule"></div>
             </div>
             <section>
-                <p style="margin:0;color:var(--muted)"><strong>專案經驗：</strong> 測試流程建立與案例管理（前後端及跨平台）</p>
+                <p style="margin:0;color:var(--muted)"><strong>測試流程建立與案例管理（前後端及跨平台）</strong></p>
                 <ul style="margin:8px 0 0;padding-left:20px;color:var(--muted)">
                     <li>依專案需求規劃功能測試，撰寫完整測試案例</li>
                     <li>執行網站平台回歸測試，確保系統穩定性與功能正確性</li>
